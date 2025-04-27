@@ -52,7 +52,7 @@ creatSTANCEobject <- function(counts, pos, prop, covariates = NULL){
   spots <- intersect(intersect(barcodes, rownames(pos)), rownames(prop))
   pos.use <- pos[match(spots, rownames(pos)),]
   prop.use <- prop[match(spots, rownames(prop)),]
-  counts.use <- counts[match(spots, colnames(counts)),]
+  counts.use <- counts[,match(spots, colnames(counts))]
   if(!is.null(covariates)){
     covariates.use <- covariates[,match(spots, rownames(covariates))]
   }else{
