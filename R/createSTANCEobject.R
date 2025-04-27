@@ -54,7 +54,7 @@ creatSTANCEobject <- function(counts, pos, prop, covariates = NULL){
   prop.use <- prop[match(spots, rownames(prop)),]
   counts.use <- counts[,match(spots, colnames(counts))]
   if(!is.null(covariates)){
-    covariates.use <- covariates[,match(spots, rownames(covariates))]
+    covariates.use <- covariates[match(spots, rownames(covariates)),]
   }else{
     covariates.use <- NULL
   }
