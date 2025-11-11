@@ -4,10 +4,23 @@
 \alias{build_kernelMatrix}
 \title{Build the Gaussian kernel matrix and compute covariance matrices}
 \usage{
-build_kernelMatrix(object)
+build_kernelMatrix(object, bw = NULL, bw.method = c("auto", "SJ", "Silverman"))
 }
 \arguments{
 \item{object}{the STANCE object.}
+
+\item{bw}{(default NULL) a single numeric value specifying the bandwidth parameter.
+If null, the bandwidth estimation step will be executed.}
+
+\item{bw.method}{a character string specifying which empirical rule to use for bandwidth estimation.
+If "auto", the Gaussian kernel bandwidth will be selected automatically:
+for datasets with 5000 spots or fewer,
+non-parametric Sheather-Jones' bandwidths are computed for each gene,
+and the median of these values is used as the common bandwidth;
+for datasets with more than 5000 spots, Silverman's bandwidths are computed for each gene,
+and the median of these gene-specific bandwidths is used as the common bandwidth.
+If "SJ", use Sheather-Jones' bandwidths.
+If "Silverman", use Silverman's bandwidth.}
 }
 \value{
 return STANCE object with the Gaussian kernel matrix.
@@ -15,10 +28,4 @@ return STANCE object with the Gaussian kernel matrix.
 \description{
 Build the Gaussian kernel matrix to model spatial correlation between spots, and
 then contruct covariance matrices (Sigma_k) for all the variance components.
-The Gaussian kernel bandwidth will be selected automatically:
-for datasets with 5000 spots or fewer,
-non-parametric Sheather-Jones' bandwidths are computed for each gene,
-and the median of these values is used as the common bandwidth;
-for datasets with more than 5000 spots, Silverman's bandwidths are computed for each gene,
-and the median of these gene-specific bandwidths is used as the common bandwidth.
 }
